@@ -175,9 +175,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/django-files/static/"
-    MEDIA_URL = "http://ict4d-vps.andrebaart.nl/django-static/django-files/"
-
+    STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/group1/static/"
+    MEDIA_URL = "http://ict4d-vps.andrebaart.nl/django-static/group1/"
     STATICFILES_STORAGE = 'vsdk.custom_storages.StaticStorage'
     DEFAULT_FILE_STORAGE ='vsdk.custom_storages.MediaStorage'
 
