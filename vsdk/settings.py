@@ -28,8 +28,8 @@ SECRET_KEY = 'tk2(l(00&kfe7j97j$dvgz&b6r!kk_zbse1(9w*eoc$bcwu773'
 ##########
 #Use True on your local PC, False on Heroku!!
 ##########
-#DEBUG = False
-DEBUG = True
+DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -175,8 +175,10 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/django-files/static/"
-    MEDIA_URL = "http://ict4d-vps.andrebaart.nl/django-static/django-files/"
+
+    STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/static/"
+    MEDIA_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/"
+
     STATICFILES_STORAGE = 'vsdk.custom_storages.StaticStorage'
     DEFAULT_FILE_STORAGE ='vsdk.custom_storages.MediaStorage'
 
