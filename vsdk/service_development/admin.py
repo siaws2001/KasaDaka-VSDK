@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import VoiceService, MessagePresentation, Choice, ChoiceOption, VoiceFragment, CallSession, CallSessionStep, KasaDakaUser, Language, VoiceLabel
+from .models import VoiceService, MessagePresentation, Choice, ChoiceOption, VoiceFragment, CallSession, CallSessionStep, KasaDakaUser, Language, VoiceLabel, Record, \
+    Result
+
 
 def format_validation_result(obj):
         """
@@ -66,11 +68,18 @@ class CallSessionInline(admin.TabularInline):
     readonly_fields = ('time','session','visited_element')
     max_num = 0
 
+class ResultInline(admin.TabularInline):
+    model = Result
+    extra = 0
+    fk_name = 'session'
+    can_delete = False
+    max_num = 0
+
 class CallSessionAdmin(admin.ModelAdmin):
     list_display = ('start','user','service','caller_id','language')
     fieldsets = [('General', {'fields' : ['service', 'user','caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language') 
-    inlines = [CallSessionInline]
+    inlines = [CallSessionInline, ResultInline]
     can_delete = False
 
     def has_add_permission(self, request):
@@ -85,6 +94,7 @@ class CallSessionAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
+
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [('Message Presentation', {'fields': ['_redirect','final_element']})]
 
@@ -97,3 +107,4 @@ admin.site.register(CallSession, CallSessionAdmin)
 admin.site.register(KasaDakaUser)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)
+admin.site.register(Record)

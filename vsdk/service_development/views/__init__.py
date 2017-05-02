@@ -4,3 +4,4 @@ from .vse_message import *
 from .user import *
 from .voiceservice import *
 from .language import *
+from .vse_record import *
