@@ -42,6 +42,21 @@ def choice_generate_context(choice_element, session):
 def choice(request, element_id, session_id):
     choice_element = get_object_or_404(Choice, pk=element_id)
     session = get_object_or_404(CallSession, pk=session_id)
+
+
+    if request.method == "POST":
+        session = get_object_or_404(CallSession, pk=session_id)
+
+        value = request.POST['field1']
+
+        result = lookup_or_create_result(session, choice_element.name, value)
+
+        result.save()
+
+        # redirect to next element
+        redirect()
+        return redirect(request.POST['redirect'])
+
     session.record_step(choice_element)
     context = choice_generate_context(choice_element, session)
     
