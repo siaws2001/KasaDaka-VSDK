@@ -27,11 +27,9 @@ SECRET_KEY = 'tk2(l(00&kfe7j97j$dvgz&b6r!kk_zbse1(9w*eoc$bcwu773'
 
 ##########
 #Use True on your local PC, False on Heroku!!
-<<<<<<< HEAD
 ##########
-DEBUG = False
-#DEBUG = True
->>>>>>> e4fc7e5b15e26df2f62f77ec2e418ace752841d5
+#DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
