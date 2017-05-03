@@ -30,6 +30,18 @@ def record_generate_context(record_element, session):
 def record(request, element_id, session_id):
     record_element = get_object_or_404(Record, pk=element_id)
     session = get_object_or_404(CallSession, pk=session_id)
+
+    if request.method == "POST":
+        session = get_object_or_404(CallSession, pk=session_id)
+
+        value = request.POST['recording']
+
+        result = lookup_or_create_result(session, record_element.name, value)
+
+        # redirect to next element
+        return redirect(request.POST['redirect'])
+
+
     session.record_step(record_element)
     context = record_generate_context(record_element, session)
 

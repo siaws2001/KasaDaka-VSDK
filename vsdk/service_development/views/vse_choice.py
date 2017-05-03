@@ -51,10 +51,7 @@ def choice(request, element_id, session_id):
 
         result = lookup_or_create_result(session, choice_element.name, value)
 
-        result.save()
-
         # redirect to next element
-        redirect()
         return redirect(request.POST['redirect'])
 
     session.record_step(choice_element)

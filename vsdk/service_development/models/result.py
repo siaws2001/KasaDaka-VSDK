@@ -16,7 +16,7 @@ class Result(models.Model):
 
 def lookup_or_create_result(session, result_name, value = ''):
 
-    result = Result.objects.get_or_create(None, name=result_name)
+    result, created = Result.objects.get_or_create(None, name=result_name, session_id = session.id)
 
     result.session = session
     result.value = value

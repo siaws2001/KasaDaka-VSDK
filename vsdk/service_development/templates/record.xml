@@ -40,7 +40,8 @@
                   <prompt>
                       <audio src="{{final_voice_label}}"/>
                   </prompt>
-                    <goto next="{{ redirect }}"/>
+                  <assign name="redirect" expr="{{ redirect_url }}"/>
+                    <submit next="" enctype="multipart/form-data" method="POST"/>
            </if>
               <if cond="confirm == '2'">
             <goto next="#{{ record.name }}"/>
