@@ -34,7 +34,7 @@ def record(request, element_id, session_id):
     if request.method == "POST":
         session = get_object_or_404(CallSession, pk=session_id)
 
-        print('%s', request.POST)
+        print('%s' % request.FILES)
 
         value = request.POST['recording']
 
