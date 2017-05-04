@@ -28,8 +28,8 @@ SECRET_KEY = 'tk2(l(00&kfe7j97j$dvgz&b6r!kk_zbse1(9w*eoc$bcwu773'
 ##########
 #Use True on your local PC, False on Heroku!!
 ##########
-#DEBUG = False
-DEBUG = True
+DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'vsdk.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-if not DEBUG:
+if DEBUG:
      DATABASES = {
              'default': {
                          'ENGINE': 'django.db.backends.sqlite3',
@@ -173,7 +173,7 @@ STATICFILES_LOCATION = FTP_STORAGE_LOCATION + '/static/'
 MEDIAFILES_LOCATION = FTP_STORAGE_LOCATION + '/media/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-if DEBUG:
+if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
     STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/static/"
