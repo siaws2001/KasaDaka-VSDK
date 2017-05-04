@@ -56,6 +56,8 @@ def choice(request, element_id, session_id):
 
     session.record_step(choice_element)
     context = choice_generate_context(choice_element, session)
+
+    context['url'] = request.get_full_path(False)
     
     return render(request, 'choice.xml', context, content_type='text/xml')
 
