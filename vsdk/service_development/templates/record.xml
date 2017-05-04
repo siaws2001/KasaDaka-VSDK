@@ -8,7 +8,14 @@
 <prompt>
 <audio src="{{ final_voice_label }}"/>
 </prompt>
+
+    <noinput>
+         <audio src="{{ did_not_hear_voice_label }}"/>
+         <reprompt/>
+    </noinput>
+
 </record>
+
 
 
 {% if record.repeat_recording_to_caller %}

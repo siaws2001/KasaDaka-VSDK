@@ -14,6 +14,7 @@ def record_generate_context(record_element, session):
     ask_confirmation_voice_label = record_element.ask_confirmation_voice_label.get_voice_fragment_url(language)
     repeat_voice_label = record_element.repeat_voice_label.get_voice_fragment_url(language)
     final_voice_label = record_element.final_voice_label.get_voice_fragment_url(language)
+    did_not_hear_voice_label = record_element.did_not_hear_voice_label.get_voice_fragment_url(language)
 
 
     context = {'record': record_element,
@@ -21,7 +22,9 @@ def record_generate_context(record_element, session):
                'voice_label' : voice_label,
                'ask_confirmation_voice_label' : ask_confirmation_voice_label,
                'repeat_voice_label' : repeat_voice_label ,
-               'final_voice_label' : final_voice_label
+               'final_voice_label' : final_voice_label,
+               'did_not_hear_voice_label' : did_not_hear_voice_label
+
                }
 
     return context

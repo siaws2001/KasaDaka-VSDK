@@ -10,6 +10,15 @@ class Record(VoiceServiceElement):
 
     _urls_name = 'service-development:record'
 
+    not_heard_voice_label = models.ForeignKey(
+        VoiceLabel,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='not_heard_voice_label'
+    )
+
+
     barge_in = models.BooleanField('Allow the caller to start recording immediately', default=True)
 
     repeat_recording_to_caller = models.BooleanField('Repeat the recording to the caller before asking for confirmation', default=True)
