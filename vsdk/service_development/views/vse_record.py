@@ -42,6 +42,8 @@ def record(request, element_id, session_id):
 
         result.file = request.FILES['recording']
 
+        result.save()
+
         # redirect to next element
         return redirect(request.POST['redirect'])
 
