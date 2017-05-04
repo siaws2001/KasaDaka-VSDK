@@ -45,5 +45,7 @@ def record(request, element_id, session_id):
     session.record_step(record_element)
     context = record_generate_context(record_element, session)
 
+    context['url'] = request.get_full_path(False)
+
     return render(request, 'record.xml', context, content_type='text/xml')
 
