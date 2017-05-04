@@ -41,6 +41,7 @@ def record(request, element_id, session_id):
         result = lookup_or_create_result(session, record_element.name, value)
 
         result.file = request.FILES['recording']
+        result.file.name = 'recording_%s_%s.wav' % (session_id, element_id)
         print('File size %s' % result.file.size)
 
         result.save()

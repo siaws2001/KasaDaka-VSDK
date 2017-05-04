@@ -72,6 +72,7 @@ class ResultInline(admin.TabularInline):
     model = Result
     extra = 0
     fk_name = 'session'
+    readonly_fields = ['name', 'file']
     can_delete = False
     max_num = 0
 
