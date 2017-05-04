@@ -25,7 +25,6 @@
     <field name="confirm">
         <prompt>
         <audio src="{{ask_confirmation_voice_label}}"/>
-        {% endfor %}
         </prompt>
         <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
               <rule id="MYRULE" scope = "public">

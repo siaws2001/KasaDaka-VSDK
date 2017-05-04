@@ -4,7 +4,7 @@ from ..models import *
 
 
 def record_get_redirect_url(record_element, session):
-    return record_element._redirect.get_absolute_url(session)
+    return record_element.redirect.get_absolute_url(session)
 
 def record_generate_context(record_element, session):
     language = session.language
