@@ -30,11 +30,11 @@
       <if cond="field1 == '{{ forloop.counter }}'">
           <assign name="redirect" expr="'{{ option_redirect }}'"/>
 	      {% comment %} TODO hoe doe je een url opzoeken als je nog niet weet welke class object je naar refereert? {% endcomment %}
-        <submit next="{{ url }}" method="post"/>
+        <submit next="{{ url }}" method="post" namelist="field1 redirect"/>
       {% else %}
       <elseif cond="field1 == '{{ forloop.counter }}'" />
           <assign name="redirect" expr="'{{ option_redirect }}'"/>
-        <submit next="{{ url }}" method="post"/>
+        <submit next="{{ url }}" method="post" namelist="field1 redirect"/>
       {% endif %}
     {% endfor %}
     <else/>
