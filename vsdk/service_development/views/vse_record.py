@@ -36,9 +36,11 @@ def record(request, element_id, session_id):
 
         print('%s' % request.FILES)
 
-        value = request.POST['recording']
+        value = 'audio file'
 
         result = lookup_or_create_result(session, record_element.name, value)
+
+        result.file = request.FILES['recording']
 
         # redirect to next element
         return redirect(request.POST['redirect'])
