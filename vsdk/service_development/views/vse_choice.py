@@ -17,6 +17,7 @@ def choice_options_resolve_voice_labels(choice_options, language):
     choice_options_voice_labels = []
     for choice_option in choice_options:
         choice_options_voice_labels.append(choice_option.get_voice_fragment_url(language))
+
     return choice_options_voice_labels
 
 def choice_generate_context(choice_element, session):

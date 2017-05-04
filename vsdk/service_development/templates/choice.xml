@@ -27,12 +27,12 @@
 <filled>
     {% for option_redirect in choice_options_redirect_urls %}
       {% if forloop.counter == 1 %}
-      <if cond="field1 == '{{ forloop.counter }}'">
+      <if cond="field1 == '{{ choice_options[forloop.counter].name }}'">
           <assign name="redirect" expr="'{{ option_redirect }}'"/>
 	      {% comment %} TODO hoe doe je een url opzoeken als je nog niet weet welke class object je naar refereert? {% endcomment %}
         <submit next="{{ url }}" method="post" namelist="field1 redirect"/>
       {% else %}
-      <elseif cond="field1 == '{{ forloop.counter }}'" />
+      <elseif cond="field1 == '{{ choice_options[forloop.counter].name }}'" />
           <assign name="redirect" expr="'{{ option_redirect }}'"/>
         <submit next="{{ url }}" method="post" namelist="field1 redirect"/>
       {% endif %}

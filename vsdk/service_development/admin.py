@@ -72,6 +72,7 @@ class ResultInline(admin.TabularInline):
     model = Result
     extra = 0
     fk_name = 'session'
+    fields = ['name', 'file', 'value']
     readonly_fields = ['name', 'file']
     can_delete = False
     max_num = 0
@@ -80,7 +81,7 @@ class CallSessionAdmin(admin.ModelAdmin):
     list_display = ('start','user','service','caller_id','language')
     fieldsets = [('General', {'fields' : ['service', 'user','caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language') 
-    inlines = [CallSessionInline, ResultInline]
+    inlines = [ResultInline,CallSessionInline]
     can_delete = False
 
     def has_add_permission(self, request):
