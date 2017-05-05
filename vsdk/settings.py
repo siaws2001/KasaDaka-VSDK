@@ -175,10 +175,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-<<<<<<< HEAD
 
-=======
->>>>>>> upstream/master
     STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/static/"
     MEDIA_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/"
 
