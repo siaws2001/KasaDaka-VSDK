@@ -6,7 +6,7 @@
 <record name="recording" beep="true" maxtime="60s"
   finalsilence="4s" dtmfterm="true" {% if record.barge_in %} bargein="true" {% endif %} >
 <prompt>
-<audio src="{{ final_voice_label }}"/>
+<audio src="{{ voice_label }}"/>
 </prompt>
 
     <noinput>
@@ -47,7 +47,7 @@
                       <audio src="{{final_voice_label}}"/>
                   </prompt>
                   <assign name="redirect" expr="'{{ redirect_url }}'"/>
-                    <submit next="{{ url }}" enctype="multipart/form-data" method="post" namelist="redirect recording"/>
+                  <submit next="{{ url }}" enctype="multipart/form-data" method="post" namelist="redirect recording"/>
            </if>
               <if cond="confirm == '2'">
             <goto next="#record_form"/>
