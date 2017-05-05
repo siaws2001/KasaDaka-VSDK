@@ -11,7 +11,7 @@ def record_generate_context(record_element, session):
     redirect_url = record_get_redirect_url(record_element, session)
 
 
-    voice_label = record_element.voice_label.get_voice_fragment_url(language),
+    voice_label = record_element.voice_label.get_voice_fragment_url(language)
     ask_confirmation_voice_label = record_element.ask_confirmation_voice_label.get_voice_fragment_url(language)
     repeat_voice_label = record_element.repeat_voice_label.get_voice_fragment_url(language)
     final_voice_label = record_element.final_voice_label.get_voice_fragment_url(language)
