@@ -50,7 +50,7 @@ def choice(request, element_id, session_id):
 
         value = request.POST['field1']
 
-        value = choice_element.choice_options.all()[int(value)].name
+        value = choice_element.choice_options.all()[int(value) - 1].name
 
         result = lookup_or_create_result(session, choice_element.name, value)
 
