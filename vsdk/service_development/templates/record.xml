@@ -50,7 +50,7 @@
                   <submit next="{{ url }}" enctype="multipart/form-data" method="post" namelist="redirect recording"/>
            </if>
               <if cond="confirm == '2'">
-            <goto next="#record_form"/>
+            <goto next="{{ url }}"/>
            </if>
           </filled>
  </field>
