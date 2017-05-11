@@ -52,7 +52,7 @@ def choice(request, element_id, session_id):
 
         value = choice_element.choice_options.all()[int(value) - 1].name
 
-        result = Result(session, choice_element.name, value)
+        result = Result()
 
         result.session = session
         result.name = choice_element.name

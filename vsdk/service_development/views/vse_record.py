@@ -40,7 +40,7 @@ def record(request, element_id, session_id):
 
         value = 'audio file'
 
-        result = Result()(session, record_element.name, value)
+        result = Result()
 
         result.session = session
         result.name = record_element.name
