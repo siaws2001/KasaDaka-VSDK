@@ -55,7 +55,7 @@ def choice(request, element_id, session_id):
         result = Result()
 
         result.session = session
-        result.name = choice_element.name
+        result.name = choice_element.description
         result.value = value
 
         result.save()

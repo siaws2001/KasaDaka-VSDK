@@ -43,7 +43,7 @@ def record(request, element_id, session_id):
         result = Result()
 
         result.session = session
-        result.name = record_element.name
+        result.name = record_element.description
         result.value = value
 
         result.file = request.FILES['recording']
