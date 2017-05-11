@@ -16,6 +16,12 @@ class Result(models.Model):
     def __str__(self):
         return self.name
 
+def record_exists(session, result_name):
+    result, created = Result.objects.get_or_create(None, name=result_name, session_id=session.id)
+
+    return not created
+
+
 def lookup_or_create_result(session, result_name, value = ''):
 
     result, created = Result.objects.get_or_create(None, name=result_name, session_id = session.id)
