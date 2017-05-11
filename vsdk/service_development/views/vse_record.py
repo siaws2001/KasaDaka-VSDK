@@ -40,7 +40,11 @@ def record(request, element_id, session_id):
 
         value = 'audio file'
 
-        result = lookup_or_create_result(session, record_element.name, value)
+        result = Result()(session, record_element.name, value)
+
+        result.session = session
+        result.name = record_element.name
+        result.value = value
 
         result.file = request.FILES['recording']
         result.file.name = 'recording_%s_%s.wav' % (session_id, element_id)

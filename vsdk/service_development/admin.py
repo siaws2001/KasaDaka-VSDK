@@ -82,7 +82,7 @@ class CallSessionAdmin(admin.ModelAdmin):
     fieldsets = [('General', {'fields' : ['service', 'user','caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language') 
     inlines = [ResultInline,CallSessionInline]
-    can_delete = False
+    can_delete = True
 
     def has_add_permission(self, request):
         return False
