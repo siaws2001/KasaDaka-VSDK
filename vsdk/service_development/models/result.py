@@ -8,7 +8,7 @@ class Result(models.Model):
 
     name = models.CharField(max_length = 100, blank = True, null = True)
     value = models.CharField(max_length = 100, blank = True, null = True)
-    file = models.FileField(upload_to='uploads/')
+    file = models.FileField(upload_to='uploads/', blank=True, null= True)
 
 
     session = models.ForeignKey(CallSession, on_delete=models.CASCADE, related_name="session")

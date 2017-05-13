@@ -33,7 +33,9 @@ def record_generate_context(record_element, session):
 
 def record(request, element_id, session_id):
     record_element = get_object_or_404(Record, pk=element_id)
-    session = get_object_or_404(CallSession, pk=session_id)
+    voice_service = record_element.service
+    session = lookup_or_create_session(voice_service, session_id)
+
 
     if request.method == "POST":
         session = get_object_or_404(CallSession, pk=session_id)
@@ -50,6 +52,9 @@ def record(request, element_id, session_id):
         result.file.name = 'recording_%s_%s.wav' % (session_id, element_id)
 
         result.save()
+
+        if record_element.map_to_call_session_property in vars(session).iteritems():
+            session[record_element.map_to_call_session_property] = value
 
         # redirect to next element
         return redirect(request.POST['redirect'])

@@ -42,12 +42,10 @@ def choice_generate_context(choice_element, session):
 
 def choice(request, element_id, session_id):
     choice_element = get_object_or_404(Choice, pk=element_id)
-    session = get_object_or_404(CallSession, pk=session_id)
-
+    voice_service = choice_element.service
+    session = lookup_or_create_session(voice_service, session_id)
 
     if request.method == "POST":
-        session = get_object_or_404(CallSession, pk=session_id)
-
         value = request.POST['field1']
 
         value = choice_element.choice_options.all()[int(value) - 1].name
@@ -59,6 +57,9 @@ def choice(request, element_id, session_id):
         result.value = value
 
         result.save()
+
+        if choice_element.map_to_call_session_property in vars(session).iteritems():
+            session[choice_element.map_to_call_session_property] = value
 
         # redirect to next element
         return redirect(request.POST['redirect'])

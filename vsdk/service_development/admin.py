@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from vsdk.service_development.models.session import EndUserCallSession
 from .models import VoiceService, MessagePresentation, Choice, ChoiceOption, VoiceFragment, CallSession, CallSessionStep, KasaDakaUser, Language, VoiceLabel, Record, \
     Result
 
@@ -13,7 +14,7 @@ def format_validation_result(obj):
 
 class VoiceServiceAdmin(admin.ModelAdmin):
     fieldsets = [('General',    {'fields' : ['name', 'description', 'vxml_url', 'active', 'is_valid', 'validation_details', 'supported_languages']}),
-                    ('Requirements', {'fields': ['requires_registration']}),
+                    ('Requirements', {'fields': ['requires_registration', 'end_user_service']}),
                     ('Call flow', {'fields': ['_start_element']})]
     list_display = ('name','active','is_valid')
     readonly_fields = ('vxml_url', 'is_valid', 'validation_details')
@@ -97,6 +98,26 @@ class CallSessionAdmin(admin.ModelAdmin):
         return actions
 
 
+class EndUserCallSessionAdmin(admin.ModelAdmin):
+    list_display = ('start','user','service','caller_id','language')
+    fieldsets = [('General', {'fields' : ['service', 'user','caller_id','start','end','language']})]
+    readonly_fields = ('service','user','caller_id','start','end','language')
+    inlines = [ResultInline,CallSessionInline]
+    can_delete = True
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return True
+
+    def get_actions(self, request):
+        actions = super(EndUserCallSessionAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [('Message Presentation', {'fields': ['_redirect','final_element']})]
 
@@ -106,6 +127,7 @@ admin.site.register(VoiceService, VoiceServiceAdmin)
 admin.site.register(MessagePresentation, MessagePresentationAdmin)
 admin.site.register(Choice, ChoiceAdmin)
 admin.site.register(CallSession, CallSessionAdmin)
+admin.site.register(EndUserCallSession, EndUserCallSessionAdmin)
 admin.site.register(KasaDakaUser)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)

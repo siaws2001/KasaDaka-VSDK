@@ -28,6 +28,8 @@ class VoiceService(models.Model):
 
     supported_languages = models.ManyToManyField(Language, blank = True)
 
+    end_user_service = models.BooleanField(default= False)
+
     @property
     def start_element(self):
         """
