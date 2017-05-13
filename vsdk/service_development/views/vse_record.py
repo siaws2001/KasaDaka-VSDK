@@ -53,8 +53,8 @@ def record(request, element_id, session_id):
 
         result.save()
 
-        if record_element.map_to_call_session_property in vars(session).iteritems():
-            session[record_element.map_to_call_session_property] = value
+        if record_element.map_to_call_session_property in vars(session).keys():
+            setattr(session, record_element.map_to_call_session_property, value)
 
         # redirect to next element
         return redirect(request.POST['redirect'])
