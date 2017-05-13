@@ -35,7 +35,7 @@ class VoiceServiceAdmin(admin.ModelAdmin):
     
 
 class VoiceServiceElementAdmin(admin.ModelAdmin):
-    fieldsets = [('General',    {'fields' : [ 'name', 'description','service','is_valid', 'validation_details', 'voice_label']})]
+    fieldsets = [('General',    {'fields' : [ 'name', 'description','service','map_to_call_session_property', 'is_valid', 'validation_details', 'voice_label']})]
     list_display = ('name', 'service', 'is_valid')
     readonly_fields = ('is_valid', 'validation_details')
      
@@ -45,6 +45,7 @@ class VoiceServiceElementAdmin(admin.ModelAdmin):
 
 class ChoiceOptionsInline(admin.TabularInline):
     model = ChoiceOption
+    exclude = ['map_to_call_session_property ']
     extra = 2
     fk_name = 'parent'
     view_on_site = False
