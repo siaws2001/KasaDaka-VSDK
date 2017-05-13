@@ -100,8 +100,8 @@ class CallSessionAdmin(admin.ModelAdmin):
 
 
 class EndUserCallSessionAdmin(admin.ModelAdmin):
-    list_display = ('start','user','service','caller_id','language')
-    fieldsets = [('General', {'fields' : ['service', 'user','caller_id','start','end','language']})]
+    list_display = ('start','user','category', 'service','caller_id','language')
+    fieldsets = [('General', {'fields' : ['service', 'user', 'category', 'caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language')
     inlines = [ResultInline,CallSessionInline]
     can_delete = True
