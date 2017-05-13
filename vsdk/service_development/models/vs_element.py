@@ -25,7 +25,7 @@ class VoiceServiceSubElement(models.Model):
             max_length = 1000,
             blank = True)
 
-    map_to_call_session_property = models.CharField(max_length=100, default='', null=True)
+    map_to_call_session_property = models.CharField(max_length=100, default='', null=True, blank=True)
 
     voice_label = models.ForeignKey(
             VoiceLabel,
