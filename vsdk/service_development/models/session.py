@@ -88,7 +88,6 @@ class EndUserCallSession(CallSession):
 
 class JournalistCallSession(CallSession):
 
-    service = models.ForeignKey(VoiceService, on_delete=models.SET_NULL, null=True)
     last_session = models.ForeignKey(EndUserCallSession, on_delete=models.SET_NULL, null=True)
 
 def lookup_or_create_session(voice_service, session_id=None, caller_id = None):
