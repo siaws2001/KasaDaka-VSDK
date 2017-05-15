@@ -42,7 +42,7 @@ def list_call_session(request, element_id, session_id):
     if EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).exists():
         return redirect(list_call_session_element.empty_redirect.get_absolute_url(session))
 
-    session_to_list = EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).order_by('start')
+    session_to_list = EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).order_by('start').first()
     session_to_list.listened = True
     session_to_list.save()
 
