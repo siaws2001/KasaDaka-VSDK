@@ -49,7 +49,28 @@ INSTALLED_APPS = [
 ]
 
 
+ADMIN_REORDER = (
+    {'app': 'django.contrib.auth', 'label': 'Users and Authorisations',},
+    # First group
+    {'app': 'service_development', 'label': 'Service development',
+     'models': ('service_development.VoiceService',
+                'service_development.Language',
+                'service_development.VoiceLabel',
+                'service_development.MessagePresentation',
+                'service_development.Choice',
+                'service_development.Record',
+                )
+    },
 
+    {'app': 'service_development', 'label': 'Call sessions',
+     'models': ('service_development.EndUserCallSession',
+                'service_development.CallSession',)
+    },
+    {'app': 'service_development', 'label': 'Users',
+     'models': ('service_development.KasaDakaUser',)
+    },
+    # Second group: same app, but different label
+    'service_development',)
 
 
 MIDDLEWARE = [
