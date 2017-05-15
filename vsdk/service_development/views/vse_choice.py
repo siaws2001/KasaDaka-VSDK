@@ -48,7 +48,8 @@ def choice(request, element_id, session_id):
     if request.method == "POST":
         value = request.POST['field1']
 
-        value = value
+        value = list(choice_element.choice_options.all()[int(value)].name)[int(value) - 1]
+
 
         result = Result()
 
