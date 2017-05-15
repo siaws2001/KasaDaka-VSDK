@@ -45,7 +45,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_reorder'
 ]
+
+
+ADMIN_REORDER = (
+    # First group
+    {'app': 'service_development', 'label': 'Service development',
+     'models': ('service_development.VoiceService',
+                'service_development.Choice',)
+    },
+    # Second group: same app, but different label
+    {'app': 'service_development', 'label': 'Service development',
+     'models': ('service_development.VoiceService',
+                'service_development.Choice',)
+     })
 
 
 MIDDLEWARE = [
@@ -57,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'vsdk.urls'

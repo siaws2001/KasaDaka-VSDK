@@ -104,7 +104,7 @@ class EndUserCallSessionAdmin(admin.ModelAdmin):
     fieldsets = [('General', {'fields' : ['service', 'user', 'category', 'caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language')
     search_fields = ['category']
-    inlines = [ResultInline,CallSessionInline]
+    inlines = [ResultInline]
     can_delete = True
 
     def has_add_permission(self, request):
