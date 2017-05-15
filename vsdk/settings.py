@@ -66,7 +66,7 @@ ADMIN_REORDER = (
      'models': ('service_development.EndUserCallSession',
                 'service_development.CallSession',)
     },
-    {'app': 'service_development', 'label': 'Users',
+    {'app': 'service_development', 'label': 'Kasadaka Users',
      'models': ('service_development.KasaDakaUser',)
     },
     # Second group: same app, but different label
