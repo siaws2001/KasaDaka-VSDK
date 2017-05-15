@@ -46,7 +46,7 @@ class ListCallSessions(VoiceServiceElement):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='%empty_(app_label)s_%(class)s_related',
+        related_name='%(app_label)s_%(class)s_related_empty',
         help_text="The element to redirect to if there is not session to be played.")
 
 
