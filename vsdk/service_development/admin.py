@@ -104,6 +104,7 @@ class EndUserCallSessionAdmin(admin.ModelAdmin):
     fieldsets = [('General', {'fields' : ['service', 'user', 'category', 'caller_id','start','end','language']})]
     readonly_fields = ('service','user','caller_id','start','end','language')
     search_fields = ['category']
+    list_filter = ['service', 'start', 'category', 'language', 'user']
     inlines = [ResultInline]
     can_delete = True
 
