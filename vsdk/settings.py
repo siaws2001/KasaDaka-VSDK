@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 
 ADMIN_REORDER = (
-    'django.contrib.auth',
+    {'app': 'django.contrib.auth', 'label': 'Users and Authorisations',},
     # First group
     {'app': 'service_development', 'label': 'Service development',
      'models': ('service_development.VoiceService',
