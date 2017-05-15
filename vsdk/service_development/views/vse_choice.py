@@ -60,6 +60,7 @@ def choice(request, element_id, session_id):
 
         if choice_element.map_to_call_session_property in vars(session).keys():
             setattr(session, choice_element.map_to_call_session_property, value)
+            session.save()
 
         # redirect to next element
         return redirect(request.POST['redirect'])
