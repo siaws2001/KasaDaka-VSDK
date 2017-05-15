@@ -46,7 +46,7 @@ class ListCallSessions(VoiceServiceElement):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='%(app_label)s_%(class)s_related_empty',
+        related_name='%empty_(app_label)s_%(class)s_related',
         help_text="The element to redirect to if there is not session to be played.")
 
 
@@ -72,7 +72,5 @@ class ListCallSessions(VoiceServiceElement):
 
     def validator(self):
         errors = []
-        errors.extend(super(ListCallSessions, self).validator())
-        if not self._redirect:
-            errors.append('List call session %s does not have a redirect element' % self.name)
+
         return errors
