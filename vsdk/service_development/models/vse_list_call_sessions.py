@@ -3,7 +3,6 @@ from django.db import models
 from vsdk.service_development.models import VoiceLabel
 from .vs_element import VoiceServiceElement, VoiceServiceSubElement
 from .voiceservice import VoiceService
-from .session import EndUserCallSession
 
 class ListCallSessions(VoiceServiceElement):
     _urls_name = 'service-development:list-call-session'
@@ -47,7 +46,7 @@ class ListCallSessions(VoiceServiceElement):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='%(app_label)s_%(class)s_related',
+        related_name='%empty_(app_label)s_%(class)s_related',
         help_text="The element to redirect to if there is not session to be played.")
 
 
@@ -75,5 +74,5 @@ class ListCallSessions(VoiceServiceElement):
         errors = []
         errors.extend(super(ListCallSessions, self).validator())
         if not self._redirect:
-            errors.append('Record %s does not have a redirect element' % self.name)
+            errors.append('List call session %s does not have a redirect element' % self.name)
         return errors
