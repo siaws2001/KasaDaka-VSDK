@@ -1,9 +1,55 @@
 from django.db import models
 
+from vsdk.service_development.models import VoiceLabel
 from .vs_element import VoiceServiceElement, VoiceServiceSubElement
+from .voiceservice import VoiceService
+from .session import EndUserCallSession
 
 class ListCallSessions(VoiceServiceElement):
-    _urls_name = 'service-development:list_call_sessions'
+    _urls_name = 'service-development:list-call-session'
+
+    list_sessions_from_service = models.ForeignKey(VoiceService, on_delete=models.SET_NULL, null=True)
+
+    name_voice_label = models.ForeignKey(
+        VoiceLabel,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='name_voice_label'
+    )
+
+    category_voice_label = models.ForeignKey(
+        VoiceLabel,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='category_voice_label'
+    )
+
+    message_voice_label = models.ForeignKey(
+        VoiceLabel,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='message_voice_label'
+    )
+
+    _redirect = models.ForeignKey(
+        VoiceServiceElement,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='%(app_label)s_%(class)s_related',
+        help_text="The element to redirect to after the session has been played.")
+
+    empty_redirect = models.ForeignKey(
+        VoiceServiceElement,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='%(app_label)s_%(class)s_related',
+        help_text="The element to redirect to if there is not session to be played.")
+
 
     @property
     def redirect(self):

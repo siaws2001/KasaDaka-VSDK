@@ -80,11 +80,30 @@ class CallSessionStep(models.Model):
         return VoiceServiceElement.objects.get_subclass(id = self._visited_element.id)
 
 
+class JournalistCallSession(CallSession):
+
+    service = models.ForeignKey(VoiceService, on_delete=models.SET_NULL, null=True)
+    last_session = models.ForeignKey(EndUserCallSession, on_delete=models.SET_NULL, null=True)
+
+
 class EndUserCallSession(CallSession):
 
     category = models.CharField(max_length=100, blank=True, null=True)
+    listened = models.BooleanField(blank=True, default=False)
 
 def lookup_or_create_session(voice_service, session_id=None, caller_id = None):
+
+    if voice_service.radio_journalist_service:
+        if session_id:
+            if session_id:
+                session = get_object_or_404(JournalistCallSession, pk=session_id)
+                return session
+        else:
+            session = JournalistCallSession.objects.create(
+                service=voice_service,
+                caller_id=caller_id)
+            session.save()
+            return session
 
     if voice_service.end_user_service:
         if session_id:

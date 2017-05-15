@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from vsdk.service_development.models.session import EndUserCallSession
 from .models import VoiceService, MessagePresentation, Choice, ChoiceOption, VoiceFragment, CallSession, CallSessionStep, KasaDakaUser, Language, VoiceLabel, Record, \
-    Result
+    Result, ListCallSessions
 
 
 def format_validation_result(obj):
@@ -121,6 +121,10 @@ class EndUserCallSessionAdmin(admin.ModelAdmin):
         return actions
 
 
+class ListCallSessionsAdmin(VoiceServiceElementAdmin):
+    fieldsets = VoiceServiceElementAdmin.fieldsets + []
+
+
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [('Message Presentation', {'fields': ['_redirect','final_element']})]
 
@@ -135,3 +139,4 @@ admin.site.register(KasaDakaUser)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(Record)
+admin.site.register(ListCallSessions, ListCallSessionsAdmin)

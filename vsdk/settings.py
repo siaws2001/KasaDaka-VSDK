@@ -59,6 +59,7 @@ ADMIN_REORDER = (
                 'service_development.MessagePresentation',
                 'service_development.Choice',
                 'service_development.Record',
+                'service_development.ListCallSessions',
                 )
     },
 
