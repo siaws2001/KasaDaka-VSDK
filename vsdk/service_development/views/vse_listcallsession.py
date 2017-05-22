@@ -46,7 +46,7 @@ def list_call_session(request, element_id, session_id):
     session_to_list.listened = True
     session_to_list.save()
 
-    session.record_step(session)
+    session.record_step(list_call_session_element)
     context = list_call_session_element_generate_context(list_call_session_element, session_to_list, session)
 
     context['url'] = request.get_full_path(False)
