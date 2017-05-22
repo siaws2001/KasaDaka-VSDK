@@ -43,13 +43,14 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
 def list_call_session(request, element_id, session_id):
 
     list_call_session_element = get_object_or_404(ListCallSessions, pk=element_id)
+    empty_redirect = list_call_session_element.empty_redirect
 
     session = get_object_or_404(JournalistCallSession, pk=session_id)
 
     service_to_list_sessions_from = list_call_session_element.list_sessions_from_service
 
     if not EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).exists():
-        return redirect(list_call_session_element.empty_redirect.redirect.get_absolute_url(session))
+        return redirect(empty_redirect.get_absolute_url(session))
 
     session_to_list = EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).order_by('start').first()
     session_to_list.listened = True
