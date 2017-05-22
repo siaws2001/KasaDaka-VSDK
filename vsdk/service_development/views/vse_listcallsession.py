@@ -16,10 +16,17 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
 
     session_to_list = CallSession()
 
+    name = ''
+    message = ''
+    category = ''
+
     #TODO : The name of each value is a hardcoded value, should be changed to a more dynamic solution.
-    name = Result.objects.filter(session = session_to_list, name = 'Record name').first().file.url or ''
-    message = Result.objects.filter(session=session_to_list, name='Record Village DB').first().file.url or ''
-    category = Result.objects.filter(session=session_to_list, name='Record message').first().file.url or ''
+    if Result.objects.filter(session = session_to_list, name = 'Record name').exists():
+        name = Result.objects.filter(session = session_to_list, name = 'Record name').first().file.url
+    if Result.objects.filter(session=session_to_list, name='Record name').exists():
+        message = Result.objects.filter(session=session_to_list, name='Record Village DB').first().file.url
+    if Result.objects.filter(session=session_to_list, name='Record name').exists():
+        category = Result.objects.filter(session=session_to_list, name='Record message').first().file.url
 
     context = {'list_call_session_element': list_call_session_element,
                'redirect_url': redirect_url,
