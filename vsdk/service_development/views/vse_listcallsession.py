@@ -14,9 +14,12 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
     category_voice_label = list_call_session_element.category_voice_label.get_voice_fragment_url(language)
     message_voice_label = list_call_session_element.message_voice_label.get_voice_fragment_url(language)
 
-    name = ''
-    message = ''
-    category = ''
+    session_to_list = CallSession()
+
+    #TODO : The name of each value is a hardcoded value, should be changed to a more dynamic solution.
+    name = Result.objects.filter(session = session_to_list, name = 'Record name').first().file.url or ''
+    message = Result.objects.filter(session=session_to_list, name='Record Village DB').first().file.url or ''
+    category = Result.objects.filter(session=session_to_list, name='Record message').first().file.url or ''
 
     context = {'list_call_session_element': list_call_session_element,
                'redirect_url': redirect_url,
