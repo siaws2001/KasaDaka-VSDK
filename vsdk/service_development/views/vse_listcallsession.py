@@ -44,6 +44,7 @@ def list_call_session(request, element_id, session_id):
 
     list_call_session_element = get_object_or_404(ListCallSessions, pk=element_id)
     empty_redirect = list_call_session_element.empty_redirect
+    redirect_element = list_call_session_element.redirect
 
     session = get_object_or_404(JournalistCallSession, pk=session_id)
 
