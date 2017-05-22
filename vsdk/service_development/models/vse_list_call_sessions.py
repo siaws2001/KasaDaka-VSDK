@@ -6,6 +6,7 @@ from .voiceservice import VoiceService
 
 class ListCallSessions(VoiceServiceElement):
     _urls_name = 'service-development:list-call-session'
+    verbose_name_plural = "List Call Sessions"
 
     list_sessions_from_service = models.ForeignKey(VoiceService, on_delete=models.SET_NULL, null=True)
 
