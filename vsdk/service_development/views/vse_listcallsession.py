@@ -19,7 +19,7 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
     message = ''
     category = ''
 
-    #TODO : The name of each value is a hardcoded value, should be changed to a more dynamic solution.
+    #TODO : The name of each value is a hardcoded value, should be changed to a more dynamic solution
     if Result.objects.filter(session = session_to_list, name = 'Record name').exists():
         name = Result.objects.filter(session = session_to_list, name = 'Record name').first().file.url
     if Result.objects.filter(session=session_to_list, name='Record name').exists():
@@ -49,7 +49,7 @@ def list_call_session(request, element_id, session_id):
     service_to_list_sessions_from = list_call_session_element.list_sessions_from_service
 
     if not EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).exists():
-        return redirect(list_call_session_element.empty_redirect.get_absolute_url(session))
+        return redirect(list_call_session_element.empty_redirect.redirect.get_absolute_url(session))
 
     session_to_list = EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).order_by('start').first()
     session_to_list.listened = True
