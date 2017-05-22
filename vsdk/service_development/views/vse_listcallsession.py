@@ -14,7 +14,6 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
     category_voice_label = list_call_session_element.category_voice_label.get_voice_fragment_url(language)
     message_voice_label = list_call_session_element.message_voice_label.get_voice_fragment_url(language)
 
-    session_to_list = CallSession()
 
     name = ''
     message = ''
