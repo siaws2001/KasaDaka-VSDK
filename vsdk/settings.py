@@ -49,31 +49,6 @@ INSTALLED_APPS = [
 ]
 
 
-ADMIN_REORDER = (
-    'auth',
-    # First group
-    {'app': 'service_development', 'label': 'Service development',
-     'models': ('service_development.VoiceService',
-                'service_development.Language',
-                'service_development.VoiceLabel',
-                'service_development.MessagePresentation',
-                'service_development.Choice',
-                'service_development.Record',
-                'service_development.ListCallSessions',
-                )
-    },
-
-    {'app': 'service_development', 'label': 'Call sessions',
-     'models': ('service_development.EndUserCallSession',
-                'service_development.CallSession',)
-    },
-    {'app': 'service_development', 'label': 'Kasadaka Users',
-     'models': ('service_development.KasaDakaUser',)
-    },
-    # Second group: same app, but different label
-    )
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
