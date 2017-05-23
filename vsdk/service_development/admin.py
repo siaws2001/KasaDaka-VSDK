@@ -120,6 +120,9 @@ class EndUserCallSessionAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
+class ListCallSessionsAdmin(admin.ModelAdmin):
+    exclude = ['map_to_call_session_property', 'voice_label']
+
 class MessagePresentationAdmin(VoiceServiceElementAdmin):
     fieldsets = VoiceServiceElementAdmin.fieldsets + [('Message Presentation', {'fields': ['_redirect','final_element']})]
 
@@ -134,4 +137,4 @@ admin.site.register(KasaDakaUser)
 admin.site.register(Language)
 admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(Record)
-admin.site.register(ListCallSessions) #TODO: Create admin
+admin.site.register(ListCallSessions, ListCallSessionsAdmin)

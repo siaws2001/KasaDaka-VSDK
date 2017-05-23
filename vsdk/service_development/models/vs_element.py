@@ -79,4 +79,5 @@ class VoiceServiceElement(VoiceServiceSubElement):
         """
         Returns the url at which this element is accessible through VoiceXML.
         """
-        return reverse(self._urls_name, kwargs= {'element_id':str(self.id), 'session_id':session.id})
+        url_name = self._urls_name
+        return reverse(url_name, kwargs= {'element_id':str(self.id), 'session_id':session.id})
