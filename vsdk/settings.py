@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'vsdk.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-if not DEBUG:
+if DEBUG:
      DATABASES = {
              'default': {
                          'ENGINE': 'django.db.backends.sqlite3',
@@ -200,7 +200,7 @@ STATICFILES_LOCATION = FTP_STORAGE_LOCATION + '/static/'
 MEDIAFILES_LOCATION = FTP_STORAGE_LOCATION + '/media/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-if DEBUG:
+if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
     STATIC_URL = "http://ict4d-vps.andrebaart.nl/django-static/" + FTP_DIR + "/static/"
