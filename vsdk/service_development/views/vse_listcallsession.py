@@ -13,28 +13,37 @@ def list_call_session_element_generate_context(list_call_session_element, sessio
     name_voice_label = list_call_session_element.name_voice_label.get_voice_fragment_url(language)
     category_voice_label = list_call_session_element.category_voice_label.get_voice_fragment_url(language)
     message_voice_label = list_call_session_element.message_voice_label.get_voice_fragment_url(language)
+    village_voice_label = list_call_session_element.village_voice_label.get_voice_fragment_url(language)
 
 
     name = ''
     message = ''
+    village = ''
     category = ''
 
     #TODO : The name of each value is a hardcoded value, should be changed to a more dynamic solution
     if Result.objects.filter(session = session_to_list, name = 'Record name').exists():
         name = Result.objects.filter(session = session_to_list, name = 'Record name').first().file.url
     if Result.objects.filter(session=session_to_list, name='Record name').exists():
-        message = Result.objects.filter(session=session_to_list, name='Record Village DB').first().file.url
+        village = Result.objects.filter(session=session_to_list, name='Record Village DB').first().file.url
     if Result.objects.filter(session=session_to_list, name='Record name').exists():
-        category = Result.objects.filter(session=session_to_list, name='Record message').first().file.url
+        message = Result.objects.filter(session=session_to_list, name='Record message').first().file.url
+
+    category_name = session_to_list.category
+
+    if ChoiceOption.objects.filter(description = category_name).exists():
+        category = ChoiceOption.objects.filter(description=category_name).first().get_voice_fragment_url(language)
 
     context = {'list_call_session_element': list_call_session_element,
                'redirect_url': redirect_url,
                'name_voice_label' : name_voice_label,
                'category_voice_label' : category_voice_label,
                'message_voice_label' : message_voice_label ,
+               'village_voice_label': village_voice_label,
                'name' : name,
                'message' : message,
                'category' : category,
+               'village' : village
                }
 
     return context
@@ -54,7 +63,7 @@ def list_call_session(request, element_id, session_id):
         return redirect(empty_redirect.get_absolute_url(session))
 
     session_to_list = EndUserCallSession.objects.filter(listened=False, service = service_to_list_sessions_from).order_by('start').first()
-    session_to_list.listened = True
+    #session_to_list.listened = True TODO: Re-enable for production
     session_to_list.save()
 
     session.record_step(list_call_session_element)
