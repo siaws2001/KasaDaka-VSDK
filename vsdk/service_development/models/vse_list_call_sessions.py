@@ -67,7 +67,7 @@ class ListCallSessions(VoiceServiceElement):
         return "List callsessions: " + self.name
 
     def is_valid(self):
-        return len(self.validator()) == 0
+        return True
 
     is_valid.boolean = True
 
