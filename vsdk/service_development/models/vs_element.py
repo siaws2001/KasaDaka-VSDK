@@ -52,7 +52,8 @@ class VoiceServiceSubElement(models.Model):
             for language in self.service.supported_languages.all():
                 errors.extend(self.voice_label.validator(language))
         else:
-            # errors.append('No VoiceLabel in: "%s"'%str(self))
+            return []
+            #errors.append('No VoiceLabel in: "%s"'%str(self))
             # This was removed for debugging purposes
         return errors
 
