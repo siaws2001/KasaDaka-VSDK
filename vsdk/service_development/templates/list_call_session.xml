@@ -14,6 +14,9 @@ plays back a session, then sends the user to the redirect
 <audio src="{{ category_voice_label }}"/>
 <audio src="{{ category }}"/>
 
+<audio src="{{ village_voice_label }}"/>
+<audio src="{{ village }}"/>
+
 <audio src="{{ message_voice_label }}"/>
 <audio src="{{ message }}"/>
 
